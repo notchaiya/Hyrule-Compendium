@@ -3,16 +3,22 @@ import CardContainer from "../components/CardContainer.jsx";
 import NavBar from "../components/NavBar.jsx";
 
 export default function Home() {
+  // category change + data
   const [zeldaEntries, setZeldaEntries] = useState([]);
   const [category, setCategory] = useState("monsters");
+  // pagination
+  const [currentPage, setCurrentPage] = useState(0);
 
   function handleCategoryChange(selected) {
     setCategory(selected);
-    console.log(category);
+    setCurrentPage(0);
+  }
+
+  function handleSetPage(selectedPage) {
+    setCurrentPage(selectedPage);
   }
   useEffect(
     function () {
-      //exception handle还没加
       async function fetchData() {
         const res = await fetch(
           `https://botw-compendium.herokuapp.com/api/v3/compendium/category/${category}`
@@ -29,10 +35,24 @@ export default function Home() {
     [category]
   );
 
+  const piecesPerPage = 8;
+  const currentEntries = zeldaEntries.slice(
+    currentPage * piecesPerPage,
+    currentPage * piecesPerPage + piecesPerPage
+  );
+
+  const totalPage = Math.ceil(zeldaEntries.length / piecesPerPage);
+
   return (
     <>
       <NavBar onSelect={handleCategoryChange} />
-      <CardContainer entries={zeldaEntries} />
+      <CardContainer
+        key={currentEntries.id}
+        entries={currentEntries}
+        setPage={handleSetPage}
+        currentPage={currentPage}
+        totalPage={totalPage}
+      />
     </>
   );
 }

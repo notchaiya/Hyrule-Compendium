@@ -9,7 +9,7 @@ function Card({ entry }) {
   }
   const { category, common_locations, description, dlc, image, name } = entry;
 
-  const locations = common_locations;
+  const locations = formatLocations(common_locations);
   return (
     <>
       <div className="bg-gray-200 shadow-gray-500 shadow-sm overflow-hidden rounded-lg flex flex-col p-4 items-center">
@@ -32,33 +32,38 @@ function Card({ entry }) {
       {isOpened && (
         <>
           <div
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/50 z-40 flex items-center justify-center "
             onClick={() => setIsOpened(false)}
           >
-            <div className=" fixed inset-0 flex items-center justify-center z-50">
-              <div
-                className="flex p-5 relative flex-col items-center space-y-2 bg-white rounded-xl shadow-lg max-w-lg w-11/1 2"
-                onClick={(e) => e.stopPropagation()}
+            <div
+              className="flex md:flex-row flex-col 
+              items-center bg-white z-50 
+              relative max-w-lg rounded-2xl shadow-lg "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute right-4 top-4 w-6 h-6 hover:bg-blue-500 flex items-center justify-center rounded-full  border-2 border-black"
+                onClick={() => setIsOpened(false)}
               >
-                <button
-                  className="absolute right-4 top-4 border-2 rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-400"
-                  onClick={() => setIsOpened(false)}
-                >
-                  ✕
-                </button>
-
-                <img src={image} alt={name} className="rounded-3xl mt-8" />
-                <div className="w-full text-center space-y-2">
-                  <h3 className="capitalize font-serif text-xl font-bold">
-                    {name}
-                  </h3>
-                  <h4 className="font-serif text-sm font-bold">{locations}</h4>
-                  <p className="capitalize pt-4">Category : {category}</p>
-                  <p>{description}</p>
-                  <p className="text-gray-400">
-                    {dlc ? "DLC only" : "Not DLC-only"}
-                  </p>
-                </div>
+                ✕
+              </button>
+              <div className="flex flex-col items-center ml-2.5">
+                <img
+                  src={image}
+                  alt={name}
+                  className="rounded-2xl mt-4 w-10/12 md:w-11/12"
+                />
+                <h3 className="capitalize font-serif font-bold  mt-3 ">
+                  {name}
+                </h3>
+                <p className="mt-3 font-serif font-ligh">
+                  Category : {category}
+                </p>
+              </div>
+              <div className="m-3 md:m-7 flex flex-col gap-y-3 md:gap-y-7 w-2/3 md:items-start items-center">
+                <h4 className="w-3/4">{locations}</h4>
+                <p className="text-center md:text-start">{description}</p>
+                <p className="">{dlc ? "DLC only" : "Not DLC-only"}</p>
               </div>
             </div>
           </div>
@@ -83,5 +88,17 @@ function Description({ str }) {
   );
 }
 
-function formatLocations({ locations }) {}
+function formatLocations(locationArray) {
+  let location_string = " ";
+  if (!Array.isArray(locationArray)) {
+    return " ";
+  }
+
+  if (locationArray.length > 1) {
+    location_string = locationArray.join(", ");
+    return location_string;
+  } else {
+    return locationArray;
+  }
+}
 export default Card;
