@@ -1,6 +1,21 @@
 import { useState } from "react";
+import Description from "./Description.jsx";
 
-function Card({ entry }) {
+export type CompendiumEntry = {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  common_locations: string[] | null;
+  drops: string[] | null;
+  dlc: boolean;
+};
+
+type CardProps = {
+  entry: CompendiumEntry;
+};
+function Card({ entry }: CardProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   function handleSetExpanded() {
@@ -23,7 +38,7 @@ function Card({ entry }) {
         <Description str={description} />
         <button
           onClick={handleSetExpanded}
-          className="mt-auto bg-gray-200  border-2 rounded-xl px-4 hover:bg-blue-400"
+          className="mt-auto bg-gray-200  border-2 rounded-xl px-4 hover:bg-highlight-blue"
         >
           Show More<span aria-hidden="true">+</span>
         </button>
@@ -42,7 +57,7 @@ function Card({ entry }) {
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute right-4 top-4 w-6 h-6 hover:bg-blue-500 flex items-center justify-center rounded-full  border-2 border-black"
+                className="absolute right-4 top-4 w-6 h-6 hover:bg-highlight-blue flex items-center justify-center rounded-full  border-2 border-black"
                 onClick={() => setIsOpened(false)}
               >
                 ✕
@@ -73,22 +88,7 @@ function Card({ entry }) {
   );
 }
 
-function Description({ str }) {
-  const wordCount = 40;
-  const words = str.split(/\s+/);
-  const isLong = words.length > wordCount;
-
-  const truncatedText = isLong ? words.slice(0, wordCount).join(" ") : str;
-
-  return (
-    <p className="mb-3 mx-3">
-      {truncatedText}...
-      {/* <button onClick={() => setIsExpended((prev) => !prev)}>show more</button> */}
-    </p>
-  );
-}
-
-function formatLocations(locationArray) {
+function formatLocations(locationArray: string[] | null) {
   let location_string = " ";
   if (!Array.isArray(locationArray)) {
     return " ";
@@ -101,4 +101,5 @@ function formatLocations(locationArray) {
     return locationArray;
   }
 }
+
 export default Card;

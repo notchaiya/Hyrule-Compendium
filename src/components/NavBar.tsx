@@ -1,10 +1,14 @@
 import { NavLink, useMatch } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "./Logo.js";
 import { HeartIcon as SolidHeart } from "@heroicons/react/24/solid";
 import { HeartIcon as OutlineHeart } from "@heroicons/react/24/outline";
-import Filter from "./Filter";
+import Filter from "./Filter.jsx";
 
-function NavBar({ onSelect }) {
+export type SelectCategory = {
+  onSelect: (filterBy: string) => void;
+};
+
+function NavBar({ onSelect }: SelectCategory) {
   const isFavoritesActive = !!useMatch("/favorites");
 
   return (

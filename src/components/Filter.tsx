@@ -1,4 +1,6 @@
-export default function Filter({ onSelect }) {
+import type { SelectCategory } from "./NavBar.jsx";
+
+export default function Filter({ onSelect }: SelectCategory) {
   return (
     <div>
       <span>Filter by</span>

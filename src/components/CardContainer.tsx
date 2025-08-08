@@ -1,6 +1,19 @@
-import React from "react";
-import Card from "./Card.jsx";
-function CardContainer({ entries, currentPage, totalPage, setPage }) {
+// import React from "react";
+import Card, { type CompendiumEntry } from "./Card.jsx";
+
+type CardContainerProps = {
+  entries: CompendiumEntry[];
+  currentPage: number;
+  totalPage: number;
+  setPage: (page: number) => void;
+};
+
+function CardContainer({
+  entries,
+  currentPage,
+  totalPage,
+  setPage,
+}: CardContainerProps) {
   function Pagination() {
     let pages = [];
     for (let i = 0; i < totalPage; i++) {

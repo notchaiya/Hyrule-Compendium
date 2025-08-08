@@ -3,3 +3,7 @@
 html {
   overflow-y: scroll;
 }
+
+@theme {
+  --color-highlight-blue: #2874ed;
+}

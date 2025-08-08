@@ -1,6 +1,6 @@
-import Home from "./pages/Home.jsx";
-import PageNotFound from "./pages/PageNotFound.jsx";
-import Favorites from "./pages/Favorites.jsx";
+import Home from "./pages/Home.js";
+import PageNotFound from "./pages/PageNotFound.js";
+import Favorites from "./pages/Favorite.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
