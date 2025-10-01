@@ -4,6 +4,23 @@ html {
   overflow-y: scroll;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+/* @config{
+  "darkMode":"class"
+} */
+
 @theme {
   --color-highlight-blue: #2874ed;
+  --color-light-bg: #ffffff;
+  --color-dark-bg: #151515;
+  --color-light-card: #e5e7eb;
+  --color-dark-card: #343434;
+  --color-light-font: #000000;
+  --color-dark-font: #ffffff;
+  --color-dark-button: #262b3b;
+  --color-light-shadow: #bcbcbc;
+  --color-dark-shadow: #050505;
+  --color-pagination-bg: #3682fc;
+  --color-pagination-currentPage-bg: #004ac2;
+  --color-pagination-hover: #5295ff;
 }

@@ -3,7 +3,7 @@ import logoUrl from "../assets/logo.png";
 export default function Logo() {
   return (
     <Link to="/">
-      <img src={logoUrl} alt="ZeldaLogo" className="h-10 w-auto" />
+      <img src={logoUrl} alt="ZeldaLogo" className="h-10 w-auto dark:invert" />
     </Link>
   );
 }
