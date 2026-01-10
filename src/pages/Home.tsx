@@ -29,16 +29,17 @@ export default function Home() {
         setIsLoading(true);
         try {
           const res = await fetch(
-            `https://botw-compendium.herokuapp.com/api/v3/compendium/category/${category}`
+            `http://localhost:3000/api/hyrule/category/${category}`
           );
           console.log("loading");
           if (!res.ok) {
             throw new Error("Something went wrong when fetching!");
           }
           const data = await res.json();
-          setZeldaEntries(data.data);
+          setZeldaEntries(data);
           setIsLoading(false);
           console.log("loaded");
+          console.log(data);
         } catch (error) {
           console.error("Fetch failed: ", error);
         } finally {

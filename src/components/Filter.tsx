@@ -8,10 +8,10 @@ export default function Filter({ onSelect }: SelectCategory) {
         onChange={(e) => onSelect(e.target.value)}
         className="hover:cursor-pointer"
       >
+        <option value="monsters">monsters</option>
         <option value="creatures">creatures</option>
         <option value="equipment">equipment</option>
         <option value="materials">materials</option>
-        <option value="monsters">monsters</option>
         <option value="treasure">treasure</option>
       </select>
     </div>
