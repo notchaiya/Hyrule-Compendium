@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import Description from "./Description.jsx";
-import { HeartIcon as OutlineHeart } from "@heroicons/react/24/outline";
+import { OutlineHeartIcon, SolidHeartIcon } from "./Icons.js";
 import { FavoritesContext } from "../context/FavoritesContext.js";
 
 export type CompendiumEntry = {
@@ -44,8 +44,7 @@ function Card({ entry }: CardProps) {
   return (
     <>
       <div
-        className="bg-light-card dark:bg-dark-card  shadow-sm overflow-hidden rounded-lg flex flex-col p-4 items-center
-      shadow-light-shadow dark:shadow-dark-shadow"
+        className="retro-panel overflow-hidden flex flex-col p-4 items-center"
       >
         <div className="relative aspect-square w-full">
           {isImgLoading && (
@@ -54,29 +53,32 @@ function Card({ entry }: CardProps) {
           <img
             src={image}
             alt={name}
-            className="rounded-lg hover:scale-105 duration-300 w-full"
+            className="w-full"
             onLoad={() => setIsImgLoading(false)}
           />
 
-          <OutlineHeart
-            className={`${
-              isFavorites(id) ? "fill-red-600 stroke-none" : "fill-none"
-            } hover:scale-110 duration-100 absolute 
-            top-2 right-2 p-1 w-6 text-gray-500 
-             bg-light-card rounded-full hover:cursor-pointer`}
-            onClick={() => toggleFavorites(entry)}
-          />
+          {isFavorites(id) ? (
+            <SolidHeartIcon
+              className="hover:scale-110 duration-100 absolute top-2 right-2 p-1 w-8 text-red-600 bg-light-card border-2 border-black hover:cursor-pointer"
+              onClick={() => toggleFavorites(entry)}
+            />
+          ) : (
+            <OutlineHeartIcon
+              className="hover:scale-110 duration-100 absolute top-2 right-2 p-1 w-8 text-black bg-light-card border-2 border-black hover:cursor-pointer"
+              onClick={() => toggleFavorites(entry)}
+            />
+          )}
         </div>
-        <h3 className="font-serif text-xl text-center font-bold capitalize pt-4 text-light-font dark:text-dark-font">
+        <h3 className="font-pixel text-lg text-center capitalize pt-4 text-light-font dark:text-dark-font">
           {name}
         </h3>
-        <p className=" font-serif font-bold text-sm text-center py-2 text-light-font dark:text-dark-font">
+        <p className="font-body text-lg text-center py-2 text-light-font dark:text-dark-font">
           {locations}
         </p>
         <Description str={description} />
         <button
           onClick={handleSetExpanded}
-          className="mt-auto border-2 rounded-xl bg-gray-200  dark:bg-dark-button  px-4 hover:bg-highlight-blue dark:text-dark-font "
+          className="mt-auto border-4 border-black bg-gray-200 dark:bg-dark-button px-4 py-1 hover:bg-highlight-blue dark:text-dark-font font-pixel text-xs"
         >
           Show More<span aria-hidden="true">+</span>
         </button>
@@ -90,12 +92,12 @@ function Card({ entry }: CardProps) {
           >
             <div
               className="flex md:flex-row flex-col 
-              items-center dark:bg-dark-card bg-light-bg z-50 
-              relative max-w-lg rounded-2xl shadow-lg "
+              items-center z-50 
+              relative max-w-lg retro-panel p-4"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute right-4 top-4 w-6 h-6 hover:bg-highlight-blue flex items-center justify-center rounded-full  border-2 bg-light-bg dark:border-dark-font text-black"
+                className="absolute right-4 top-4 w-8 h-8 hover:bg-highlight-blue flex items-center justify-center border-4 border-black bg-light-bg text-black font-pixel text-xs"
                 onClick={() => setIsOpened(false)}
               >
                 ✕
@@ -104,16 +106,16 @@ function Card({ entry }: CardProps) {
                 <img
                   src={image}
                   alt={name}
-                  className="rounded-2xl mt-4 w-10/12 md:w-11/12"
+                  className="mt-4 w-10/12 md:w-11/12 border-4 border-black"
                 />
-                <h3 className="capitalize font-serif font-bold  mt-3 dark:text-dark-font text-light-font ">
+                <h3 className="capitalize font-pixel mt-4 text-lg dark:text-dark-font text-light-font ">
                   {name}
                 </h3>
-                <p className="mt-3 font-serif font-bold font-ligh text-light-font dark:text-dark-font">
+                <p className="mt-3 font-body text-lg text-light-font dark:text-dark-font">
                   Category : {category}
                 </p>
               </div>
-              <div className="m-3 md:m-7 flex flex-col gap-y-3 md:gap-y-7 w-2/3 md:items-start items-center">
+              <div className="m-3 md:m-7 flex flex-col gap-y-3 md:gap-y-7 w-2/3 md:items-start items-center font-body text-lg">
                 <h4 className="w-3/4 text-center md:text-start text-light-font dark:text-dark-font">
                   Location: {locations}
                 </h4>

@@ -66,11 +66,13 @@ function CardContainer({
         ))}
       </div>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPage={totalPage}
-        setPage={setPage}
-      />
+      {totalPage > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPage={totalPage}
+          setPage={setPage}
+        />
+      )}
     </div>
   );
 }

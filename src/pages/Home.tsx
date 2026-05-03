@@ -52,7 +52,7 @@ export default function Home() {
   );
 
   return (
-    <div className="dark:bg-dark-bg bg-light-bg min-h-screen">
+    <div>
       <NavBar onSelect={handleCategoryChange} />
       {isLoading ? (
         <div className="grid grid-cols-1 px-18 py-4 md:grid-cols-4 gap-6">

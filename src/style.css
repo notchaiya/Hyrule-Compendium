@@ -10,17 +10,138 @@ html {
 } */
 
 @theme {
-  --color-highlight-blue: #2874ed;
-  --color-light-bg: #ffffff;
-  --color-dark-bg: #151515;
-  --color-light-card: #e5e7eb;
-  --color-dark-card: #343434;
-  --color-light-font: #000000;
-  --color-dark-font: #ffffff;
-  --color-dark-button: #262b3b;
-  --color-light-shadow: #bcbcbc;
-  --color-dark-shadow: #050505;
-  --color-pagination-bg: #3682fc;
-  --color-pagination-currentPage-bg: #004ac2;
-  --color-pagination-hover: #5295ff;
+  --color-highlight-blue: #56B2D4;
+  --color-light-bg: #fdf6e3;
+  --color-dark-bg: #2B1F36;
+  --color-light-card: #ebd9ad;
+  --color-dark-card: #2E3C4C;
+  --color-light-font: #3b2f2f;
+  --color-dark-font: #e5e7eb;
+  --color-dark-button: #37483D;
+  --color-light-shadow: #bcae9b;
+  --color-dark-shadow: #0a0e0c;
+  --color-pagination-bg: #ebd9ad;
+  --color-pagination-currentPage-bg: #56B2D4;
+  --color-pagination-hover: #bcae9b;
+
+  --color-dark-pagination-bg: #3E5269;
+  --color-dark-pagination-currentPage-bg: #C50000;
+  --color-dark-pagination-hover: #0D2C80;
+
+  --font-pixel: "Press Start 2P", cursive;
+  --font-body: "VT323", monospace;
+}
+
+@layer base {
+  * {
+    cursor: url('data:image/svg+xml;utf8,<svg viewBox="0 0 600 950" width="24" height="38" xmlns="http://www.w3.org/2000/svg"><path fill="%23000000" d="m 50,99.996 0,699.974 49.998,0 0,-49.998 50,0 0,-49.998 49.998,0 0,-50 50,0 0,50 49.998,0 0,99.996 49.998,0 0,100.031 99.998,0 0,-99.996 -49.998,0 0,-100.031 -50,0 0,-99.998 199.996,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 z" /></svg>'), auto !important;
+  }
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer utilities {
+  .retro-panel {
+    background-color: var(--color-light-card);
+    border: 4px solid #000;
+    box-shadow: inset -4px -4px 0px rgba(0, 0, 0, 0.15), inset 4px 4px 0px rgba(255, 255, 255, 0.4);
+    border-radius: 0;
+  }
+  .dark .retro-panel {
+    background-color: var(--color-dark-card);
+    border: 4px solid #000;
+    box-shadow: inset -4px -4px 0px rgba(0, 0, 0, 0.5), inset 4px 4px 0px rgba(255, 255, 255, 0.15);
+  }
+  .font-pixel {
+    font-family: var(--font-pixel);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+/* Animated backgrounds */
+@keyframes cloudScroll {
+  from {
+    transform: translateX(-15vw);
+  }
+
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+.cloud-move-1 {
+  animation: cloudScroll 40s linear infinite;
+  animation-delay: -5s;
+  left: -15vw;
+}
+
+.cloud-move-2 {
+  animation: cloudScroll 65s linear infinite;
+  animation-delay: -30s;
+  left: -15vw;
+}
+
+.cloud-move-3 {
+  animation: cloudScroll 35s linear infinite;
+  animation-delay: -15s;
+  left: -15vw;
+}
+
+.stars-layer-1 {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  box-shadow: 10vw 20vh #fff, 30vw 10vh #fff, 50vw 40vh #fff, 70vw 20vh #fff, 90vw 50vh #fff, 20vw 80vh #fff, 80vw 80vh #fff, 15vw 45vh #fff, 85vw 15vh #fff;
+  animation: twinkle 1.2s ease-in-out infinite alternate;
+}
+
+.stars-layer-2 {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  box-shadow: 15vw 15vh #fff, 45vw 25vh #fff, 65vw 55vh #eab308, 85vw 35vh #fff, 25vw 65vh #fff, 55vw 85vh #fff, 5vw 90vh #fff, 95vw 85vh #eab308;
+  animation: twinkle 1.8s ease-in-out infinite alternate backwards;
+  animation-delay: 0.6s;
+}
+
+.stars-layer-3 {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  box-shadow: 25vw 5vh #fff, 55vw 35vh #fff, 75vw 5vh #eab308, 35vw 85vh #fff, 5vw 55vh #fff, 45vw 65vh #fff, 10vw 30vh #fff, 85vw 75vh #eab308;
+  animation: twinkle 1s ease-in-out infinite alternate backwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes twinkle {
+  0%, 20% {
+    opacity: 0.1;
+  }
+  80%, 100% {
+    opacity: 1;
+  }
+}
+
+.pixel-fire {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  animation: fire-flicker 0.4s steps(2, end) infinite alternate;
+}
+
+@keyframes fire-flicker {
+  0% {
+    box-shadow: -30px -60px 0 #f00, 0px -90px 0 #f00, 30px -60px 0 #f00, 0px -60px 0 #ff0, -30px -30px 0 #ffA500, 30px -30px 0 #ffA500, 0px -30px 0 #fff;
+  }
+
+  100% {
+    box-shadow: -45px -75px 0 #f00, 15px -75px 0 #f00, 0px -45px 0 #ff0, -30px -15px 0 #ffA500, 30px -15px 0 #ffA500, 0px 0px 0 #fff;
+  }
 }
