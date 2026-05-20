@@ -13,8 +13,8 @@ html {
   --color-highlight-blue: #56B2D4;
   --color-light-bg: #fdf6e3;
   --color-dark-bg: #2B1F36;
-  --color-light-card: #ebd9ad;
-  --color-dark-card: #2E3C4C;
+  --color-light-card: #ebd9ade6;
+  --color-dark-card: #2E3C4Ce6;
   --color-light-font: #3b2f2f;
   --color-dark-font: #e5e7eb;
   --color-dark-button: #37483D;
@@ -23,10 +23,12 @@ html {
   --color-pagination-bg: #ebd9ad;
   --color-pagination-currentPage-bg: #56B2D4;
   --color-pagination-hover: #bcae9b;
+  --color-light-pagination-font: #98741B;
 
-  --color-dark-pagination-bg: #3E5269;
-  --color-dark-pagination-currentPage-bg: #C50000;
-  --color-dark-pagination-hover: #0D2C80;
+  --color-dark-pagination-bg: #4B688A;
+  --color-dark-pagination-currentPage-bg: #628F99;
+  --color-dark-pagination-hover: #3E538C;
+  --color-dark-pagination-font: #E7F4B9;
 
   --font-pixel: "Press Start 2P", cursive;
   --font-body: "VT323", monospace;
@@ -34,8 +36,9 @@ html {
 
 @layer base {
   * {
-    cursor: url('data:image/svg+xml;utf8,<svg viewBox="0 0 600 950" width="24" height="38" xmlns="http://www.w3.org/2000/svg"><path fill="%23000000" d="m 50,99.996 0,699.974 49.998,0 0,-49.998 50,0 0,-49.998 49.998,0 0,-50 50,0 0,50 49.998,0 0,99.996 49.998,0 0,100.031 99.998,0 0,-99.996 -49.998,0 0,-100.031 -50,0 0,-99.998 199.996,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 z" /></svg>'), auto !important;
+    cursor: url('data:image/svg+xml;utf8,<svg viewBox="0 0 600 950" width="24" height="38" xmlns="http://www.w3.org/2000/svg"><path fill="%233b2f2f" stroke="%23FFFFFF" stroke-width="30" stroke-linejoin="round"  d="m 50,99.996 0,699.974 49.998,0 0,-49.998 50,0 0,-49.998 49.998,0 0,-50 50,0 0,50 49.998,0 0,99.996 49.998,0 0,100.031 99.998,0 0,-99.996 -49.998,0 0,-100.031 -50,0 0,-99.998 199.996,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 -49.998,0 0,-49.998 -50,0 0,-49.998 z" /></svg>'), auto !important;
   }
+
   body {
     font-family: var(--font-body);
   }
@@ -48,14 +51,17 @@ html {
     box-shadow: inset -4px -4px 0px rgba(0, 0, 0, 0.15), inset 4px 4px 0px rgba(255, 255, 255, 0.4);
     border-radius: 0;
   }
+
   .dark .retro-panel {
     background-color: var(--color-dark-card);
     border: 4px solid #000;
     box-shadow: inset -4px -4px 0px rgba(0, 0, 0, 0.5), inset 4px 4px 0px rgba(255, 255, 255, 0.15);
   }
+
   .font-pixel {
     font-family: var(--font-pixel);
   }
+
   .font-body {
     font-family: var(--font-body);
   }
@@ -121,10 +127,14 @@ img {
 }
 
 @keyframes twinkle {
-  0%, 20% {
+
+  0%,
+  20% {
     opacity: 0.1;
   }
-  80%, 100% {
+
+  80%,
+  100% {
     opacity: 1;
   }
 }

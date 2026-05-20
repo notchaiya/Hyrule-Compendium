@@ -53,7 +53,7 @@ function Card({ entry }: CardProps) {
           <img
             src={image}
             alt={name}
-            className="w-full"
+            className="w-full transition-transform duration-400 hover:scale-104 cursor-pointer"
             onLoad={() => setIsImgLoading(false)}
           />
 

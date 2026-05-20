@@ -1,6 +1,6 @@
 import { NavLink, useMatch } from "react-router-dom";
 import Logo from "./Logo.js";
-import { OutlineHeartIcon, SolidHeartIcon, SunIcon, MoonIcon, MusicIcon, MutedMusicIcon } from "./Icons.js";
+import { OutlineHeartIcon, SolidHeartIcon, SunIcon, MoonIcon, MusicIcon, MutedIcon } from "./Icons.js";
 import { useContext } from "react";
 import { AudioContext } from "../context/AudioContext.js";
 import Filter from "./Filter.jsx";
@@ -36,7 +36,7 @@ function NavBar({ onSelect }: SelectCategory) {
                         {audioContext?.isPlaying ? (
                             <MusicIcon className="size-full text-black dark:invert" />
                         ) : (
-                            <MutedMusicIcon className="size-full text-black dark:invert" />
+                            <MutedIcon className="size-full text-black dark:invert" />
                         )}
                     </div>
                     {theme === "dark" ? (
