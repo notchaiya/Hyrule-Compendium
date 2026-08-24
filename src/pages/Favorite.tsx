@@ -29,19 +29,20 @@ export default function Favorites() {
   // );
   // const totalPage = Math.ceil(favorites.length / piecesPerPage);
   return (
-    <div className="dark:bg-dark-bg bg-light-bg min-h-screen">
-      <NavBar onSelect={() => {}} />
-      <CardContainer
-        entries={currentEntries}
-        setPage={handleSetPage}
-        currentPage={currentPage}
-        totalPage={totalPage}
-      />
-      {/* <div className="grid grid-cols-1 px-18 py-4 md:grid-cols-4 gap-6">
-        {favorites?.map((favorite) => (
-          <Card entry={favorite} key={favorite.id} />
-        ))}
-      </div> */}
+    <div>
+      <NavBar onSelect={() => { }} />
+      {favorites.length === 0 ? (
+        <div className="flex justify-center items-center h-[50vh] text-2xl font-pixel dark:text-dark-font text-center px-4">
+          You haven't added any favorites yet!
+        </div>
+      ) : (
+        <CardContainer
+          entries={currentEntries}
+          setPage={handleSetPage}
+          currentPage={currentPage}
+          totalPage={totalPage}
+        />
+      )}
     </div>
   );
 }

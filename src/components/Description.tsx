@@ -1,18 +1,18 @@
 type DescriptionProps = {
-  str: string;
+    str: string;
 };
 
 export default function Description({ str }: DescriptionProps) {
-  const wordCount = 40;
-  const words = str.split(/\s+/);
-  const isLong = words.length > wordCount;
+    const wordCount = 40;
+    const words = str.split(/\s+/);
+    const isLong = words.length > wordCount;
 
-  const truncatedText = isLong ? words.slice(0, wordCount).join(" ") : str;
+    const truncatedText = isLong ? words.slice(0, wordCount).join(" ") : str;
 
-  return (
-    <p className="mb-3 mx-3 text-light-font dark:text-gray-200">
-      {truncatedText}...
-      {/* <button onClick={() => setIsExpended((prev) => !prev)}>show more</button> */}
-    </p>
-  );
+    return (
+        <p className="mb-3 mx-3 text-light-font dark:text-gray-200">
+            {truncatedText}...
+        </p>
+    );
 }
+
