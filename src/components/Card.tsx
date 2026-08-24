@@ -43,9 +43,7 @@ function Card({ entry }: CardProps) {
 
   return (
     <>
-      <div
-        className="retro-panel overflow-hidden flex flex-col p-4 items-center"
-      >
+      <div className="retro-panel overflow-hidden flex flex-col p-4 items-center">
         <div className="relative aspect-square w-full">
           {isImgLoading && (
             <div className=" bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse" />
@@ -108,7 +106,7 @@ function Card({ entry }: CardProps) {
                   alt={name}
                   className="mt-4 w-10/12 md:w-11/12 border-4 border-black"
                 />
-                <h3 className="capitalize font-pixel mt-4 text-lg dark:text-dark-font text-light-font ">
+                <h3 className="capitalize font-pixel mt-4 text-center text-lg dark:text-dark-font text-light-font ">
                   {name}
                 </h3>
                 <p className="mt-3 font-body text-lg text-light-font dark:text-dark-font">

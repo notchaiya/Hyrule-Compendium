@@ -3,9 +3,9 @@ import type { SelectCategory } from "./NavBar.jsx";
 
 const CATEGORIES = ["monsters", "creatures", "equipment", "materials", "treasure"];
 
-export default function Filter({ onSelect }: SelectCategory) {
+export default function Filter({ onSelect, activeCategory }: SelectCategory) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState(CATEGORIES[0]);
+    const selected = activeCategory || CATEGORIES[0];
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -21,7 +21,6 @@ export default function Filter({ onSelect }: SelectCategory) {
     }, []);
 
     const handleSelect = (category: string) => {
-        setSelected(category);
         onSelect(category);
         setIsOpen(false);
     };

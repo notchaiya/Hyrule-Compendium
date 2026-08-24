@@ -12,7 +12,6 @@ export default function Description({ str }: DescriptionProps) {
     return (
         <p className="mb-3 mx-3 text-light-font dark:text-gray-200">
             {truncatedText}...
-            {/* <button onClick={() => setIsExpended((prev) => !prev)}>show more</button> */}
         </p>
     );
 }
