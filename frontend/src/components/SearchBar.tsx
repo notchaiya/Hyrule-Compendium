@@ -22,16 +22,13 @@ export default function SearchBar() {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Prefetch all entries on mount for local fast searching
   useEffect(() => {
     let isMounted = true;
     async function loadAllEntries() {
       try {
         const allData = await Promise.all(
           CATEGORIES.map(async (cat) => {
-            const res = await fetch(
-              `http://localhost:3000/api/hyrule/category/${cat}`,
-            );
+            const res = await fetch(`/api/hyrule/category/${cat}`);
             if (!res.ok) throw new Error(`Failed to fetch ${cat}`);
             return res.json();
           }),
@@ -49,14 +46,12 @@ export default function SearchBar() {
     };
   }, []);
 
-  // Sync search input value with URL search params
   const currentSearchParam = searchParams.get("search") || "";
   useEffect(() => {
     setQuery(currentSearchParam);
     setTypedQuery(currentSearchParam);
   }, [currentSearchParam]);
 
-  // Handle clicking outside to close suggestions
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -72,7 +67,6 @@ export default function SearchBar() {
     };
   }, []);
 
-  // Filter recommendations based on what user typed
   const recommendations = typedQuery.trim()
     ? allEntries
         .filter((entry) =>
@@ -89,11 +83,9 @@ export default function SearchBar() {
     setHighlightedIndex(-1);
   };
 
-  // Perform search navigation
   const executeSearch = (searchTerm: string, categoryOfItem?: string) => {
     setIsOpen(false);
 
-    // Find the category of the item if not provided
     let targetCategory = categoryOfItem;
     if (!targetCategory && searchTerm.trim()) {
       const match = allEntries.find(
@@ -102,7 +94,6 @@ export default function SearchBar() {
       if (match) {
         targetCategory = match.category;
       } else {
-        // Fallback: search for first partial match in allEntries
         const partialMatch = allEntries.find((entry) =>
           entry.name.toLowerCase().includes(searchTerm.toLowerCase()),
         );
@@ -112,17 +103,14 @@ export default function SearchBar() {
       }
     }
 
-    // Default target category to current URL param or monsters
     const finalCategory =
       targetCategory || searchParams.get("category") || "monsters";
 
-    // If searching, we navigate to home page / with the query params
     if (searchTerm.trim()) {
       navigate(
         `/?category=${finalCategory}&search=${encodeURIComponent(searchTerm)}`,
       );
     } else {
-      // If empty query, clear search param and stay on current category
       navigate(`/?category=${finalCategory}`);
     }
   };
@@ -144,7 +132,7 @@ export default function SearchBar() {
     if (e.key === "ArrowDown") {
       e.preventDefault();
       const nextIndex =
-        ((highlightedIndex + 1) % (recommendations.length + 1)) - 1; // range: -1 to recommendations.length - 1
+        ((highlightedIndex + 1) % (recommendations.length + 1)) - 1;
       setHighlightedIndex(nextIndex);
       if (nextIndex === -1) {
         setQuery(typedQuery);
@@ -182,7 +170,6 @@ export default function SearchBar() {
     setIsOpen(false);
     setHighlightedIndex(-1);
 
-    // Clear search param in URL (navigate back to home page with current category)
     const currentCategory = searchParams.get("category") || "monsters";
     navigate(`/?category=${currentCategory}`);
   };

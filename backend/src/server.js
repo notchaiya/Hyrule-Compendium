@@ -1,38 +1,73 @@
 const express = require("express");
-const cors = require("cors");
 const { Pool } = require("pg");
+const path = require("path");
 
 const app = express();
-const port = process.env.PORT;
+const port = Number(process.env.PORT || 3000);
+const publicDirectory = path.join(__dirname, "../public");
 
-app.use(cors());
+const requiredEnvironmentVariables = [
+  "DB_HOST",
+  "DB_PORT",
+  "DB_NAME",
+  "DB_USER",
+  "DB_PASSWORD",
+];
+
+const missingEnvironmentVariables = requiredEnvironmentVariables.filter(
+  (name) => !process.env[name],
+);
+
+if (missingEnvironmentVariables.length > 0) {
+  throw new Error(
+    `Missing required environment variables: ${missingEnvironmentVariables.join(", ")}`,
+  );
+}
 
 app.use(express.json());
+app.use(express.static(publicDirectory));
 
 const pool = new Pool({
-  host: process.env.DB_HOST, // localhost:5432
+  host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  port: process.env.DB_PORT,
+  port: Number(process.env.DB_PORT),
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+});
+
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok" });
 });
 
 app.get("/api/hyrule/category/:categoryName", async (req, res) => {
   const { categoryName } = req.params;
   try {
-    const query = "SELECT * FROM hyruleData WHERE category =$1";
+    const query = "SELECT * FROM hyruleData WHERE category = $1";
     const result = await pool.query(query, [categoryName]);
-    res.json(result.rows);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Not found" });
     }
+
+    return res.json(result.rows);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 
-app.listen(port, () => {
-  console.log(`server has started on ${port}`);
+app.use("/api", (_req, res) => {
+  res.status(404).json({ error: "API route not found" });
+});
+
+app.use((req, res, next) => {
+  if (req.method === "GET" && req.accepts("html")) {
+    return res.sendFile(path.join(publicDirectory, "index.html"));
+  }
+
+  return next();
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Hyrule Compendium is listening on port ${port}`);
 });

@@ -1,4 +1,3 @@
-// import React from "react";
 import Card, { type CompendiumEntry } from "./Card.jsx";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 type CardContainerProps = {

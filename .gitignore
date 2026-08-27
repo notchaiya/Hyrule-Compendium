@@ -70,6 +70,20 @@ web_modules/
 .env.*
 !.env.example
 
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -138,7 +152,5 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .DS_Store
-.DS_Store
 
-# Editor settings
 .vscode/
