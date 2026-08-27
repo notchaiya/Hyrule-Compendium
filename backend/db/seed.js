@@ -7,7 +7,7 @@ const client = new Client({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
+  port: Number(process.env.DB_PORT),
 });
 
 const rawData = fs.readFileSync(path.join(__dirname, "../data/hyrule.json"));
@@ -71,7 +71,8 @@ async function seedDatabase() {
     }
     console.log("All data seeded successfully!");
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    process.exitCode = 1;
   } finally {
     await client.end();
     console.log("disconnected!");

@@ -3,7 +3,6 @@ import { type CompendiumEntry } from "../components/Card.js";
 interface FavoritesContextValue {
   favorites: CompendiumEntry[];
   toggleFavorites: (item: CompendiumEntry) => void;
-  //isFavorites 还没处理
   isFavorites: (id: number) => boolean;
 }
 

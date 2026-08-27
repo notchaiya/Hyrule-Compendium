@@ -4,7 +4,7 @@ import musicUrl from "../assets/Link's Memories Resolve and Grief.mp3";
 
 const audio = new Audio(musicUrl);
 audio.loop = true;
-audio.volume = 0.35; // default pixel game volume
+audio.volume = 0.35;
 
 audio.addEventListener('ended', () => {
   audio.currentTime = 0;

@@ -5,9 +5,6 @@ html {
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
-/* @config{
-  "darkMode":"class"
-} */
 
 @theme {
   --color-highlight-blue: #56b2d4;
@@ -89,7 +86,6 @@ img {
   image-rendering: pixelated;
 }
 
-/* Animated backgrounds */
 @keyframes cloudScroll {
   from {
     transform: translateX(-15vw);

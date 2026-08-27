@@ -56,18 +56,6 @@ export const MutedIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// export const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
-//   <svg
-//     xmlns="http://www.w3.org/2000/svg"
-//     viewBox="0 0 23 23"
-//     fill="currentColor"
-//     shapeRendering="crispEdges"
-//     {...props}
-//   >
-//     <path d="M9 7h5v1H9z M8 8h1v1H8z M14 8h1v1H14z M7 9h1v5H7z M15 9h1v5H15z M8 14h1v1H8z M14 14h1v1H14z M9 15h5v1H9z M11 3h1v3H11z M11 17h1v3H11z M3 11h3v1H3z M17 11h3v1H17z M5 5h1v1H5z M6 6h1v1H6z M17 5h1v1H17z M16 6h1v1H16z M6 16h1v1H6z M5 17h1v1H5z M16 16h1v1H16z M17 17h1v1H17z" />
-//   </svg>
-
-// );
 export const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +66,6 @@ export const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
     shapeRendering="crispEdges"
     {...props}
   >
-    {/* 2px 粗的太阳圆环 */}
     <path
       fillRule="evenodd"
       d="
@@ -87,7 +74,6 @@ export const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
       "
     />
 
-    {/* 2px 粗的上下左右光线 */}
     <path
       d="
       M11 2h2v4h-2z
@@ -97,7 +83,6 @@ export const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
     "
     />
 
-    {/* 2px 粗的斜向光线 */}
     <path
       d="
       M4 4h2v2H4z

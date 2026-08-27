@@ -3,8 +3,6 @@ import { useTheme } from "../hooks/useTheme.js";
 import lightBg from "../assets/zelda_pixel_background.svg";
 import darkBg from "../assets/zelda_pixel_background_night.svg";
 
-
-
 export const AnimatedBackground = ({ children }: { children: React.ReactNode }) => {
   const { theme } = useTheme();
 
@@ -36,7 +34,6 @@ export const AnimatedBackground = ({ children }: { children: React.ReactNode }) 
         </div>
       )}
 
-      {/* Content wrapper */}
       <div className="relative z-10 min-h-screen">
         {children}
       </div>

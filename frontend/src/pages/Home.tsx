@@ -11,7 +11,6 @@ export default function Home() {
   const category = searchParams.get("category") || "monsters";
   const searchQuery = searchParams.get("search") || "";
 
-  // category change + data
   const [zeldaEntries, setZeldaEntries] = useState<CompendiumEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,9 +37,7 @@ export default function Home() {
       async function fetchData() {
         setIsLoading(true);
         try {
-          const res = await fetch(
-            `http://localhost:3000/api/hyrule/category/${category}`
-          );
+          const res = await fetch(`/api/hyrule/category/${category}`);
           console.log("loading");
           if (!res.ok) {
             throw new Error("Something went wrong when fetching!");
@@ -82,7 +79,6 @@ export default function Home() {
         </div>
       ) : (
         <CardContainer
-          // key={currentEntries.id}
           entries={currentEntries}
           setPage={handleSetPage}
           currentPage={currentPage}
