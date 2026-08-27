@@ -40,45 +40,6 @@ Hyrule-Compendium/
 └── docker-compose.yml  # Local app and database setup
 ```
 
-## Run locally with Docker
-
-### Prerequisites
-
-- Docker Desktop with Docker Compose
-
-### Setup
-
-1. Create a local environment file:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-2. Replace the placeholder password in `.env`.
-
-3. Start PostgreSQL:
-
-   ```bash
-   docker compose up -d db
-   ```
-
-4. Seed the database:
-
-   ```bash
-   docker compose run --rm seed
-   ```
-
-5. Build and start the app:
-
-   ```bash
-   docker compose up --build app
-   ```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-> [!WARNING]
-> The seed command drops and recreates the compendium table.
-
 ## Data source
 
 Compendium data in [`backend/data/hyrule.json`](backend/data/hyrule.json) is a
